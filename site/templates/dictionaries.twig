@@ -1,0 +1,19 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+{% for dict in dictionaries %}
+    <details>
+        <summary>
+            {{ dict.dictname }}
+        </summary>
+        <form>
+            <br>
+            Base language: <input type="text" value="{{ dict.baselang_long|e }}" name="baselang[{{ dict.id }}]" id="baselang_{{ dict.id }}" size="10"><br>
+            Target language: <input type="text" value="{{ dict.lang_long|e }}" name="lang[{{ dict.id }}]" id="lang_{{ dict.id }}" size="10"><br><br>
+            Enabled: <input type="checkbox" {% if dict.enabled == 'y' %}checked{% endif %}><br><br>
+            Tags: <input type="text" value="{{ dict.tags }}" size="20"><br>
+        </form>
+        <br>
+    </details>
+{% endfor %}
+{% endblock %}

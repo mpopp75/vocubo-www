@@ -1,0 +1,59 @@
+body {
+  font-family: sans-serif;
+  background: #FFFFDD;
+}
+
+div#container {
+    display: grid;
+    grid-template-rows: 5px auto 10px auto 5px auto;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+header {
+  grid-row: 2 / 3;
+  text-align: center;
+}
+
+nav {
+  grid-row: 4 / 5;
+}
+
+.href_active {
+  font-weight: bold;
+}
+
+article {
+  grid-row: 6 / 7;
+}
+
+@media (min-width: 550px) {
+    div#container {
+        grid-template-rows: 5px auto 5px auto;
+        grid-template-columns: 10px 250px 20px auto;
+        margin-left: unset;
+        margin-right: unset;
+    }
+
+    header {
+      grid-row: 2 / 3;
+      grid-column: 2 / 5;
+    }
+
+    nav {
+      grid-row: 4 / 5;
+      grid-column: 2 / 3;
+
+    }
+
+    article {
+      grid-row: 4 / 5;
+      grid-column: 4 / 5;
+    }
+
+    article.nologin {
+      grid-row: 4 / 5;
+      grid-column: 2 / 5;
+      text-align: center;
+    }
+}

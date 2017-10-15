@@ -1,0 +1,7 @@
+<?php
+$config['sitepath'] = '/var/www/html/vocubo/';
+
+$config['salt_pre'] = '';
+
+$config['salt_post'] = '';
+?>

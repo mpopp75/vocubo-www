@@ -1,0 +1,18 @@
+{% extends "layout.twig" %}
+
+{% block content %}
+<p>{{ voc.baselang_long }}: {{ voc.word_base }}</p>
+
+{% if voc.hints %}
+<p><small>{{ voc.hints }}</small></p>
+{% endif %}
+
+<div id="question">
+<input type="text" id="entry" size="30" autofocus><br>
+<input type="hidden" id="id" value="{{ voc.id }}">
+<button type="button" id="sbutton" onclick="sendAnswer({{ voc.id }})">Send</button>
+</div>
+
+<div id="reply">
+</div>
+{% endblock %}

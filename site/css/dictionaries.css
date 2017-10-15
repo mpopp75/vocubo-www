@@ -1,0 +1,9 @@
+summary {
+    background-color: #EEEEEE;
+    cursor: pointer;
+}
+details {
+    border: 1px solid #CCCCCC;
+    max-width: 400px;
+    padding: 5px;
+}

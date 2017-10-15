@@ -1,0 +1,6 @@
+/__db/
+/lib/init/config.php
+/lib/init/config.local.php
+/site/compilation_cache/
+/vendor/
+composer.phar

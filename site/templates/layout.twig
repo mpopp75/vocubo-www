@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Vocubo</title>
+<link rel="shortcut icon" href="favicon/vocubo.png">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/main.css">
+{% if file == "dictionaries" %}<link rel="stylesheet" href="css/dictionaries.css">{% endif %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<div id="container">
+<header>
+<h1>Vocubo</h1>
+{% if user %}
+<p>User: {{ user.user_name|e }} <a href="index.php?logout=1">Logout</a></p>
+{% endif %}
+</header>
+{% if user %}
+<nav>
+<ul>
+  <li><a href="index.php" {% if file == "index" %}class="href_active"{% endif %}>Home</a></li>
+  <li><a href="practice.php" {% if file == "practice" %}class="href_active"{% endif %}>Practice</a></li>
+  <li><a href="dictionaries.php" {% if file == "dictionaries" %}class="href_active"{% endif %}>Dictionaries</a></li>
+  <li><a href="vocabulary.php" {% if file == "vocabulary" %}class="href_active"{% endif %}>Vocabulary</a></li>
+</ul>
+</nav>
+{% endif %}
+<article {% if user == null %}class="nologin"{% endif %}>
+{% if user %}
+  {% block content %}
+  {% endblock %}
+{% endif %}
+
+{% if user == null %}
+<form action="index.php" method="POST">
+<p>Username:<br><input type="text" name="username" size="20"></p>
+<p>Password:<br><input type="password" name="pw" size="20"></p>
+<p><input type="submit" name="s" value="Submit"></p>
+</form>
+{% endif %}
+</article>
+</div>
+{% if file == "practice" %}
+<script src="js/practice.js"></script>
+{% endif %}
+</body>
+</html>
