@@ -13,7 +13,7 @@ class Practice extends User
                                lang, lang_long, word_target, hints, gender, RAND() AS rnd
                         FROM v_vocabulary_enabled
                         WHERE id_user = %d
-                        ORDER BY rnd DESC
+                        ORDER BY count_log, correct_answers, percent_correct, rnd DESC
                         LIMIT 1",
                         (int)parent::$user_id);
 
