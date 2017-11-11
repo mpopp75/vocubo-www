@@ -1,7 +1,14 @@
 <?php
+$config['scope'] = 'production';
+
 $config['sitepath'] = '/var/www/html/vocubo/';
 
 $config['salt_pre'] = '';
 
 $config['salt_post'] = '';
+
+$config['dbcon'] = array('host' => 'localhost',
+                         'user' => 'vocubo_user',
+                         'pw'   => 'top$ecret',
+                         'db'   => 'vocubo');
 ?>

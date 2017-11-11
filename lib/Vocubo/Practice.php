@@ -20,7 +20,7 @@ class Practice extends User
         return $this->getRow($sql);
     }
 
-    public function checkAnswer($id, $answer) {
+    public function checkAnswer($id, $answer, $log = true) {
         $sql = sprintf("SELECT word_target
                         FROM vocabulary
                         WHERE id = %d",
@@ -29,10 +29,50 @@ class Practice extends User
         $correctAnswer = $this->getOne($sql);
 
         if($correctAnswer === $answer) {
+            $this->logResult($id, 1);
             return array(true, null);
         } else {
+            $this->logResult($id, 0, $answer);
             return array(false, $correctAnswer);
         }
+    }
+
+    private function logResult($id, $result, $answer = "") {
+        $sql = "";
+        if ($answer === "") {
+            $sql = sprintf("INSERT INTO practice_log
+                            (id_user, id_vocabulary, result)
+                            VALUES
+                            (%d, %d, %d)",
+                            (int)self::$user_id,
+                            (int)$id,
+                            (int)$result);
+        } else {
+            $sql = sprintf("INSERT INTO practice_log
+                            (id_user, id_vocabulary, result, wrong_answer)
+                            VALUES
+                            (%d, %d, %d, '%s')",
+                            (int)self::$user_id,
+                            (int)$id,
+                            (int)$result,
+                            $this->escape($answer));
+        }
+
+        return $this->query($sql);
+    }
+
+    public function getLog($id, $limit = 10) {
+        $sql = sprintf("SELECT ts, result, wrong_answer
+                        FROM practice_log
+                        WHERE id_user = %d
+                          AND id_vocabulary = %d
+                        ORDER BY ts DESC
+                        LIMIT %d",
+                        (int)self::$user_id,
+                        (int)$id,
+                        (int)$limit);
+
+        return $this->getAll($sql);
     }
 }
 ?>

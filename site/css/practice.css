@@ -1,0 +1,7 @@
+table#logtable {
+  margin-top: 20px;
+}
+
+table#logtable td {
+  padding-right: 35px;
+}
