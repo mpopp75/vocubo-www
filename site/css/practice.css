@@ -5,3 +5,32 @@ table#logtable {
 table#logtable td {
   padding-right: 35px;
 }
+
+div#chartoggle {
+  margin-top: 20px;
+  width: 50px;
+  padding-top: 10px;
+  padding-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 200%;
+  font-weight. bold;
+}
+
+div#characters {
+  margin-top: 0px;
+  width: 50%;
+}
+
+div#characters div {
+  float: left;
+  width: 50px;
+  border: 1px solid #CCCCCC;
+  text-align: center;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  font-size: 200%;
+  cursor: pointer;
+}

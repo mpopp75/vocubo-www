@@ -13,6 +13,9 @@
 <button type="button" id="sbutton" onclick="sendAnswer({{ voc.id }})">Send</button>
 </div>
 
+<div id="chartoggle" onclick="toggleChars()">Č</div>
+<div id="characters" style="display: none">{% include 'characters.twig' %}</div>
+
 <div id="reply"></div>
 
 <div id="log"></div>

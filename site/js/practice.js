@@ -6,6 +6,8 @@ $("#entry").keyup(function(event) {
 
 function sendAnswer(id) {
     var answer = document.getElementById('entry').value;
+    var chartoggle = document.getElementById('chartoggle');
+    var characters = document.getElementById('characters');
 
     $.ajax({
         type: "POST",
@@ -17,6 +19,9 @@ function sendAnswer(id) {
 
             $('div#reply').html(msg + next);
             $('div#question').html(answer);
+
+            chartoggle.style.display = "none";
+            characters.style.display = "none";
 
             getLog(id);
         }
@@ -55,4 +60,22 @@ function getLog(id) {
             $('div#log').html(html);
         }
     });
+}
+
+function toggleChars() {
+    var characters = document.getElementById('characters');
+
+    if(characters.style.display === "none") {
+        characters.style.display = "block";
+    } else {
+        characters.style.display = "none";
+    }
+}
+
+function getChar(char) {
+    var entry = document.getElementById('entry');
+
+    entry.value = entry.value + char;
+
+    entry.focus();
 }
