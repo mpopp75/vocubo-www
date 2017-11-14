@@ -75,7 +75,12 @@ function toggleChars() {
 function getChar(char) {
     var entry = document.getElementById('entry');
 
-    entry.value = entry.value + char;
+    var selectionStart = entry.selectionStart;
+    var selectionEnd = entry.selectionEnd;
+
+    entry.value = entry.value.substring(0, selectionStart) + char + entry.value.substring(selectionEnd, entry.length);
+    entry.selectionStart = selectionStart + 1;
+    entry.selectionEnd = selectionStart + 1;
 
     entry.focus();
 }
