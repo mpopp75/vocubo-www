@@ -1,9 +1,14 @@
 table#logtable {
   margin-top: 20px;
+  font-size: 80%;
 }
 
 table#logtable td {
   padding-right: 35px;
+}
+
+span.langoutput {
+  font-size: 150%;
 }
 
 div#chartoggle {

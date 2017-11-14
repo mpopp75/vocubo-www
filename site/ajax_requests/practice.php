@@ -16,7 +16,7 @@ switch ($what) {
         if($correct[0] === true) {
             print "<p style=\"color: green\">Answer is correct.</p>";
         } else {
-            print "<p style=\"color: red\">Answer is false. Correct is <b>" . $correct[1] . "</b></p>";
+            print "<p style=\"color: red\">Answer is false. Correct is <b><span class=\"langoutput\">" . $correct[1] . "</span></b></p>";
         }
         break;
     case "getlog" :

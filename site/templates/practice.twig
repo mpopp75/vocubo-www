@@ -1,7 +1,7 @@
 {% extends "layout.twig" %}
 
 {% block content %}
-<p>{{ voc.baselang_long }}: {{ voc.word_base }}</p>
+<p>{{ voc.baselang_long }} (ID: {{ voc.id }}): <span class="langoutput">{{ voc.word_base }}</span></p>
 
 {% if voc.hints %}
 <p><small>{{ voc.hints }}</small></p>
@@ -14,7 +14,7 @@
 </div>
 
 <div id="chartoggle" onclick="toggleChars()">Č</div>
-<div id="characters" style="display: none">{% include 'characters.twig' %}</div>
+<div id="characters" style="display: block">{% include 'characters.twig' %}</div>
 
 <div id="reply"></div>
 
