@@ -10,7 +10,7 @@ class Practice extends User
 
     public function getVocabulary() {
         $sql = sprintf("SELECT id, baselang, baselang_long, word_base,
-                               lang, lang_long, word_target, hints, gender, RAND() AS rnd
+                               lang, lang_long, word_target, hints, RAND() AS rnd
                         FROM v_vocabulary_enabled
                         WHERE id_user = %d
                         ORDER BY count_log, correct_answers, percent_correct, rnd DESC
