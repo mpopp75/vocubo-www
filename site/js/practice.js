@@ -1,5 +1,5 @@
 $("#entry").keyup(function(event) {
-    if (event.keyCode === 13) {
+    if (event.keyCode === 13 && $("#entry").val() !== "") {
         $("#sbutton").click();
     }
 });
