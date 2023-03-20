@@ -43,7 +43,8 @@ class User extends Database
 
     public function userLogout() {
         $sql = sprintf("DELETE FROM logins
-                        WHERE session_id = '%s'",
+                        WHERE session_id = '%s'
+                           OR NOW() > ts + INTERVAL 14 DAY",
                         session_id());
 
         if ($this->db->query($sql)) {
