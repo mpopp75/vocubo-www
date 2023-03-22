@@ -27,7 +27,7 @@ class User extends Database
             self::$user_name = $user['email'];
             self::$user_session = session_id();
 
-            $sql = sprintf("INSERT INTO logins
+            $sql = sprintf("INSERT IGNORE INTO logins
                             (id_user, session_id)
                             VALUES
                             (%d, '%s')",
