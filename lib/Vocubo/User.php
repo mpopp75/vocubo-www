@@ -41,11 +41,14 @@ class User extends Database
         return false;
     }
 
-    public function userLogout() {
+    public function userLogout($session_id = null) {
+
+        $session_id = isset($session_id) ? $session_id : session_id();
+
         $sql = sprintf("DELETE FROM logins
                         WHERE session_id = '%s'
                            OR NOW() > ts + INTERVAL 14 DAY",
-                        session_id());
+                        $session_id);
 
         if ($this->db->query($sql)) {
             self::$user_id = null;
