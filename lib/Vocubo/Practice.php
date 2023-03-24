@@ -4,8 +4,8 @@ require_once 'Vocubo/User.php';
 
 class Practice extends User
 {
-    public function __construct() {
-        parent::__construct();
+    public function __construct($session_id = null) {
+        parent::__construct($session_id);
     }
 
     public function getVocabulary() {

@@ -8,7 +8,8 @@ class User extends Database
     protected static $user_name = null;
     protected static $user_session = null;
 
-    public function __construct() {
+    public function __construct($session_id = null) {
+        self::$user_session = isset($session_id) ? $session_id : session_id();
         parent::__construct();
     }
 
@@ -41,19 +42,18 @@ class User extends Database
         return false;
     }
 
-    public function userLogout($session_id = null) {
-
-        $session_id = isset($session_id) ? $session_id : session_id();
+    public function userLogout() {
 
         $sql = sprintf("DELETE FROM logins
                         WHERE session_id = '%s'
                            OR NOW() > ts + INTERVAL 14 DAY",
-                        $session_id);
+                        $this->escape(self::$user_session));
 
         if ($this->db->query($sql)) {
             self::$user_id = null;
             self::$user_name = null;
             self::$user_session = null;
+            session_destroy();
 
             return true;
         } else {
@@ -66,12 +66,12 @@ class User extends Database
                         FROM `user` u INNER JOIN logins l
                           ON u.id = l.id_user
                         WHERE l.session_id = '%s'",
-                        session_id());
+                        $this->escape(self::$user_session));
 
         if ($user = $this->getRow($sql)) {
             self::$user_id = (int)$user['id'];
             self::$user_name = $user['email'];
-            self::$user_session = session_id();
+            self::$user_session = $user['session_id'];
 
             return true;
         } else {
