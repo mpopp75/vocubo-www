@@ -15,7 +15,18 @@ if ($practice->checkLogin()) {
             print json_encode($practice->getVocabulary());
             break;
         case "answer" :
-            print json_encode($practice->checkAnswer($question_id, $answer));
+            $result = $practice->checkAnswer($question_id, $answer);
+
+            $correct = "";
+            $correct_answer = "";
+            if ($result[0] == true) {
+                $correct = "correct";
+            } else {
+                $correct = "incorrect";
+                $correct_answer = $result[1];
+            }
+
+            print json_encode(array("correct" => $correct, "correct_answer" => $correct_answer));
             break;
         default :
             print "Unknown action";
