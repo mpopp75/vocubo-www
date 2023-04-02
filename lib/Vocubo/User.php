@@ -5,6 +5,7 @@ require_once 'Vocubo/Database.php';
 class User extends Database
 {
     protected static $user_id = null;
+    protected static $user_email = null;
     protected static $user_name = null;
     protected static $user_session = null;
 
@@ -51,6 +52,7 @@ class User extends Database
 
         if ($this->db->query($sql)) {
             self::$user_id = null;
+            self::$user_email = null;
             self::$user_name = null;
             self::$user_session = null;
             session_destroy();
@@ -70,7 +72,8 @@ class User extends Database
 
         if ($user = $this->getRow($sql)) {
             self::$user_id = (int)$user['id'];
-            self::$user_name = $user['email'];
+            self::$user_email = $user['email'];
+            self::$user_name = $user['name'];
             self::$user_session = $user['session_id'];
 
             return true;
@@ -82,6 +85,7 @@ class User extends Database
     public function getUser() {
         if (isset(self::$user_id) && self::$user_id !== null) {
             return array('user_id' => self::$user_id,
+                         'user_email' => self::$user_email,
                          'user_name' => self::$user_name,
                          'user_session' => self::$user_session);
         } else {
