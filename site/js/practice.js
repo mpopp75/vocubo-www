@@ -11,7 +11,7 @@ function sendAnswer(id) {
 
     $.ajax({
         type: "POST",
-        url:  "ajax_requests/practice.php",
+        url:  "requests/practice.php",
         data: "id=" + parseInt(id) + "&what=sendanswer&answer=" + answer,
         success: function(msg){
 
@@ -31,7 +31,7 @@ function sendAnswer(id) {
 function getLog(id) {
     $.ajax({
         type: "POST",
-        url:  "ajax_requests/practice.php",
+        url:  "requests/practice.php",
         data: "id=" + parseInt(id) + "&what=getlog",
         success: function(msg){
             var html = "<table id=\"logtable\">";

@@ -2,8 +2,8 @@
 require_once('../../lib/prepend-ajax.php');
 require_once('../../lib/Vocubo/User.php');
 
-$uname = isset($_REQUEST['user']) ? $_REQUEST['user'] : "";
-$pw   = isset($_REQUEST['pass']) ? $_REQUEST['pass'] : "";
+$uname = isset($_POST['user']) ? $_POST['user'] : "";
+$pw   = isset($_POST['pass']) ? $_POST['pass'] : "";
 
 $user = new \Vocubo\User();
 
