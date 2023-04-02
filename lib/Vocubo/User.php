@@ -26,7 +26,8 @@ class User extends Database
 
         if ($user = $this->getRow($sql)) {
             self::$user_id = (int)$user['id'];
-            self::$user_name = $user['email'];
+            self::$user_email = $user['email'];
+            self::$user_name = $user['name'];
             self::$user_session = session_id();
 
             $sql = sprintf("INSERT IGNORE INTO logins
