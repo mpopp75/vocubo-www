@@ -64,7 +64,7 @@ class User extends Database
         }
     }
 
-    public function checkLogin() {
+    public function checkLogin($renew_login = false) {
         $sql = sprintf("SELECT u.id, u.email, u.`name`, l.session_id
                         FROM `user` u INNER JOIN logins l
                           ON u.id = l.id_user
@@ -77,7 +77,21 @@ class User extends Database
             self::$user_name = $user['name'];
             self::$user_session = $user['session_id'];
 
-            return true;
+            if ($renew_login) {
+                $sql = sprintf("UPDATE logins
+                                   SET ts = NOW(6)
+                                 WHERE session_id = '%s'",
+                                 $this->escape(self::$user_session));
+
+                if ($this->db->query($sql)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            } else {
+                return true;
+            }
+
         } else {
             return false;
         }
