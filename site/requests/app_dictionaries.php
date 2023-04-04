@@ -8,7 +8,15 @@ $action = isset($_POST['action']) ? $_POST['action'] : "";
 $dictionaries = new \Vocubo\Dictionaries($session_id);
 
 if ($dictionaries->checkLogin()) {
-    print 1;
+    switch ($action) {
+        case "dictionary_list" :
+
+            print json_encode($dictionaries->getDictionaries());
+
+            break;
+        default :
+            print "Unknown action";
+    }
 } else {
     print 0;
 }
